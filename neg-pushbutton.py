@@ -13,19 +13,19 @@ GPIO.setup(ledRight,GPIO.OUT)#defined pin as output
 GPIO.setup(ButtonRight,GPIO.IN)#defined pin as input
 #Internal variables
 countPush=0
-previousState=1
+previousState=0
 #program
 try:
 	while True:
 		GPIO.output(led,1) #turn on the led
-		if GPIO.input(ButtonRight):
+		if GPIO.input(ButtonRight)==False:
 			GPIO.output(ledRight,0)#turn off led
-			previousState=1
-		if GPIO.input(ButtonRight)==False and previousState==1:
+			previousState=0
+		if GPIO.input(ButtonRight) and previousState==0:
 			countPush+=1
 			print("Right button pressed: "+str(countPush))
 			GPIO.output(ledRight,1) #turn on the led
-			previousState=0	
+			previousState=1	
 except KeyboardInterrupt:
 	GPIO.cleanup() #clean up
 	print("\nButton presed: "+str(countPush)+" times.")
