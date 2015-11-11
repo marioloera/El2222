@@ -24,13 +24,11 @@ Left=0
 Right=0
 #program
 print("Hola")
-name=input('What is the name of p1? ') 
-info=[str]*2
-info[0]=name
-name=input('What is the name of p2? ') 
-info[1]=name
-print("in the left  p1: "+info[0])
-print("in the right p2: "+info[1])
+#name=input('What is your name? ') 
+#age=input('What is your age? ')
+#info=[name,age]
+#print("your names is: "+name)
+#print("your age is: "+info[1])
 print("*****PLAY*****")
 try:
 	while True:
@@ -62,13 +60,6 @@ try:
 				GPIO.output(ledRight,1) #turn on the led
 			GPIO.output(ledRight,0) #turn off led
 except KeyboardInterrupt:
-	if CountPushLeft>>CountPushRight:
-		print("\nP1: "+info[0]+"  won") 
-	if CountPushRight>>CountPushLeft:
-		print("\nP2: "+info[1]+"  won") 
-	if CountPushRight==CountPushLeft:
-		print("\nDraft")
-	print("Score:\n"+info[0]+": "+str(CountPushLeft)+"\n"+info[1]+": "+str(CountPushRight))
 	GPIO.cleanup() #clean up
 
 
