@@ -1,0 +1,13 @@
+ompiled source #
+###################
+*.*~
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.swp
+*.out
+*.DS_Store
+parameters_boids.txt

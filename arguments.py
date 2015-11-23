@@ -21,7 +21,7 @@ def main(argv):
 	#file = open('abc.txt','w')
 	file = open(inputfile,'w')
 	file.write("hola mario\n")
-	file.write(outputfile)
+	file.write(outputfile+"\n")
 	file.close()
 if __name__ == "__main__":
 	main(sys.argv[1:])
