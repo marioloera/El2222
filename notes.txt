@@ -1,1 +1,2 @@
 git@github.com:marioloera/el2222_G7.git
+git@github.com:marioloera/El2222.git
