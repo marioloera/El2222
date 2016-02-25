@@ -9,11 +9,11 @@ try:
 	while True:
 		GPIO.output(led,1) #turn on the led
 		time.sleep(0.5)#sleep time in seconds
+		print("hola")
 		GPIO.output(led,0) #turn off led
 		time.sleep(0.5)#sleep time in seconds
 except KeyboardInterrupt:
 	GPIO.cleanup() #clean up
-
 
 
 
