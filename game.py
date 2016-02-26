@@ -84,8 +84,7 @@ try:
 
 
                 l1.set(b1.pressed_once())
-                time.sleep(1)
-		l2.set(b2.is_pressed())
+                l2.set(b2.is_pressed())
                 l3.set(b3.is_pressed())
 
 
