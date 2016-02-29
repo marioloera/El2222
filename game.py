@@ -48,7 +48,7 @@ class Button:
         def is_pressed(self):
             return GPIO.input(self.pinNum);
 
-
+a
 
 #create objects Button(pinNumber)
 b1=Button(37,"b1")
