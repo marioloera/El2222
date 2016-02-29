@@ -14,6 +14,7 @@ PIN_b2=35
 PIN_b3=33
 PIN_b4=31
 
+
 #LEDs pinNumber
 PIN_l1=13
 PIN_l2=11
@@ -68,13 +69,9 @@ class Game:
             print "press the secuence now: "
             for i in range(0,self.n): #to iterate on the factors of the number
                 #push button
-                #num=input('What is the next led: ')
-                print "What is the next led: "
-                self.guess[i]=self.get_button()
-                GPIO.output(pin_leds[self.guess[i]],1)#turn on led
-                time.sleep(0.3)
-                GPIO.output(pin_leds[self.guess[i]],0)#turn off led
-
+                num=input('What is the next led: ')
+                self.guess[i]=num
+                #led turn on
             return;
 
         def evaluation(self):
@@ -171,13 +168,13 @@ class Game:
         def get_button(self):
             result=0
             while result==0:
-                if b1.pressed_once():
+                if b1.is_pressed():
                     result=1
-                if b2.pressed_once():
+                if b2.is_pressed():
                     result=2
-                if b3.pressed_once():
+                if b3.is_pressed():
                     result=3
-                if b4.pressed_once():
+                if b4.is_pressed():
                     result=4
             return result;
 
@@ -237,17 +234,17 @@ l4=Led(pin_leds[4])
 lgreen=Led(PIN_lgreen)
 lred=Led(PIN_lred)
 
+
+
 #create game
 game=Game()
 
-while game.state!=4:
-    print "Press: B1 to play, B2 for set_size, B3 for set_vel, B4 to exit:"
-    game.state=game.get_button()
-    GPIO.output(pin_leds[game.state],1)#turn on led
-    time.sleep(0.2)
-    GPIO.output(pin_leds[game.state],0)#turn off led
-    time.sleep(0.2)
 
+print "Press: B1 to play, B2 for set_size, B3 for set_vel, B4 to exit:"
+#game.state=input('Press: B1 to play, B2 for set_size, B3 for set_vel, B4 to exit: ')
+
+game.state=game.get_button()
+while game.state!=4:
     if game.state==1:
         game.play()
     elif game.state==2:
@@ -256,15 +253,36 @@ while game.state!=4:
     elif game.state==3:
         game.set_vel()
         game.play()
+    #game.state=input('Press: B1 to play, B2 for set_size, B3 for set_vel, B4 to exit: ')
+    game.state=game.get_button()
 
-#delete objects
-del l1
-del l2
-del l3
-del l4
-del lred
-del lgreen
-GPIO.cleanup() #clean up
+
+#program
+try:
+	while True:
+                lred.on()
+                if GPIO.input(b4.pinNum)==False:
+                        l4.off()
+                        b4.previus_state=0
+                if GPIO.input(b4.pinNum) and b4.previus_state==0:
+                        print(b4.name + " button pressed." )
+                        l4.on()
+                        b4.previus_state=1
+
+                l1.set(b1.pressed_once())
+                l1.set(b1.is_pressed())
+                l2.set(b2.is_pressed())
+                l3.set(b3.is_pressed())
+
+
+except KeyboardInterrupt:
+        del l1
+        del l2
+        del l3
+        del l4
+        del lred
+        del lgreen
+	GPIO.cleanup() #clean up
 
 
 
