@@ -1,0 +1,5 @@
+#!/bin/bash
+# My first script
+
+echo "hola mario"
+python  /home/mario/El2222/funtions.py
