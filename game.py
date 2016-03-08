@@ -52,7 +52,7 @@ class Game:
             time.sleep(.5)
             for i in range(0,self.size):
                 self.array[i]=random.randrange(self.led_min,self.led_max+1)
-                print (str(i) + ": " + "L" + str(self.array[i]) )
+                print ("L" + str(self.array[i]) + "  :" + str(i+1) )
                 time.sleep(1.0/self.vel)
                 #led turn on
                 dic_Led[self.array[i]].on()
@@ -65,13 +65,12 @@ class Game:
         def guessing(self):
             print "press the secuence now: "
             for i in range(0,self.size): #to iterate on the factors of the number
-                print "What is the next led: "
+                #print "What is the next led: "
                 self.guess[i]=self.get_button(1)
             return;
 
         def evaluation(self):
             #evaluation
-            time.sleep(0.5)
             self.answer=1
             for i in range(0,self.size):
                 if self.array[i]==self.guess[i]:
@@ -88,6 +87,9 @@ class Game:
 
             if self.answer==1:
                 print "Contratulations you won!"
+                self.size+=1
+                if self.size>self.size_max:
+                    self.size=self.size_max
                 lgreen.on()
                 time.sleep(2.0)
                 lgreen.off()
