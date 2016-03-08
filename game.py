@@ -1,3 +1,7 @@
+#EL2222 - project
+#Mario Loera Lozano
+#Last change 2016-march-03
+
 #definitions
 #add GPIO library
 import RPi.GPIO as GPIO
